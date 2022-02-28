@@ -31,4 +31,49 @@
         
 }
 
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmação de Exclusão</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Prosseguir com a Exclusão? <text class="nomeTarefa"></text></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary btnFechar" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-outline-danger btnExcluir">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{ 
+<script>
+    function ConfirmarExclusao(tarefaId, nomeTarefa) {
+        $(".nomeTarefa").text(nomeTarefa);
+        $(".modal").modal();
+
+        $(".btnExcluir").on('click', function () {
+            $.ajax({
+                url: 'Tarefas/ExcluirTarefa',
+                method: 'POST',
+                data: { tarefaId: tarefaId },
+                success: function (data) {
+                    $(".modal").modal('hide');
+                    location.reload(true);
+                }
+            })
+        })
+
+        $('.btnFechar').on('click', function () {
+            tarefaId = null;
+            nomeTarefa = null;
+            $(".modal").modal('hide');
+        });
+    }
+</script>
+}
+
 
