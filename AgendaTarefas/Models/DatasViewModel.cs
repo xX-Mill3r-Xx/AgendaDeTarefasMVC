@@ -7,7 +7,7 @@ namespace AgendaTarefas.Models
 {
     public class DatasViewModel
     {
-        public string Data { get; set; }
+        public string Datas { get; set; }
         public string Identificadores { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-﻿using AgendaTarefas.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AgendaTarefas.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AgendaTarefas.Controllers
 {
@@ -15,7 +15,6 @@ namespace AgendaTarefas.Controllers
         {
             _contexto = contexto;
         }
-
         public IActionResult Index()
         {
             return View(PegarDatas());
@@ -26,30 +25,31 @@ namespace AgendaTarefas.Controllers
             DateTime dataAtual = DateTime.Now;
             DateTime dataLimite = DateTime.Now.AddDays(10);
             int qtdDias = 0;
-            DatasViewModel datas;
+            DatasViewModel data;
             List<DatasViewModel> listaDatas = new List<DatasViewModel>();
 
-            while(dataAtual < dataLimite)
+            while (dataAtual < dataLimite)
             {
-                datas = new DatasViewModel();
-                datas.Data = dataAtual.ToShortDateString();
-                datas.Identificadores = "collapse" + dataAtual.ToShortDateString().Replace("/", "");
-                listaDatas.Add(datas);
+                data = new DatasViewModel();
+                data.Datas = dataAtual.ToShortDateString();
+                data.Identificadores = "collapse" + dataAtual.ToShortDateString().Replace("/", "");
+                listaDatas.Add(data);
                 qtdDias = qtdDias + 1;
                 dataAtual = DateTime.Now.AddDays(qtdDias);
             }
+
             return listaDatas;
         }
 
         [HttpGet]
-        public IActionResult CriarTarefas(string dataTarefa)
+        public IActionResult CriarTarefa(string dataTarefa)
         {
             Tarefa tarefa = new Tarefa
             {
                 Data = dataTarefa
             };
 
-            return View(tarefa);  
+            return View(tarefa);
         }
 
         [HttpPost]
@@ -70,10 +70,8 @@ namespace AgendaTarefas.Controllers
         {
             Tarefa tarefa = await _contexto.Tarefas.FindAsync(tarefaId);
 
-            if(tarefa == null)
-            {
+            if (tarefa == null)
                 return NotFound();
-            }
 
             return View(tarefa);
         }
@@ -98,7 +96,6 @@ namespace AgendaTarefas.Controllers
             _contexto.Tarefas.Remove(tarefa);
             await _contexto.SaveChangesAsync();
             return Json(true);
-
         }
     }
 }

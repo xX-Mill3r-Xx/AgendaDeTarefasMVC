@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AgendaTarefas.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220228171629_CriacaoBD")]
-    partial class CriacaoBD
+    [Migration("20220304185129_CreateNewDB")]
+    partial class CreateNewDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

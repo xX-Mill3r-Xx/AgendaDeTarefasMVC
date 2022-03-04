@@ -2,7 +2,7 @@
 
 namespace AgendaTarefas.Migrations
 {
-    public partial class CriacaoBD : Migration
+    public partial class CreateNewDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

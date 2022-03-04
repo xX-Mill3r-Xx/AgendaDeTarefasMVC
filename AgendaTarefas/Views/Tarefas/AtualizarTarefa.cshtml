@@ -1,8 +1,9 @@
 ﻿@model AgendaTarefas.Models.Tarefa
 
 @{
-    ViewData["Title"] = "Atualizar Tarefa na data " + Model.Data;
+    ViewData["Title"] = "Atualizar tarefa na data " + Model.Data;
 }
+
 
 
 <div class="container">
@@ -19,19 +20,20 @@
                             <input asp-for="Nome" class="form-control" />
                             <span asp-validation-for="Nome" class="text-danger"></span>
                         </div>
-                        
-                            <input asp-for="Data" type="hidden" />
-                            
+
+                        <input asp-for="Data" type="hidden" />
+
                         <div class="form-group">
                             <label asp-for="Horario" class="control-label"></label>
                             <input asp-for="Horario" class="form-control" />
                             <span asp-validation-for="Horario" class="text-danger"></span>
                         </div>
                     </div>
+
                     <div class="card-footer">
                         <div class="form-group">
                             <input type="submit" value="Atualizar" class="btn btn-sm btn-outline-primary" /> &emsp;
-                            <a asp-action="Index"  class="btn btn-sm btn-link">Voltar</a>
+                            <a asp-action="Index" class="btn btn-sm btn-link">Voltar</a>
                         </div>
                     </div>
                 </form>
@@ -39,5 +41,3 @@
         </div>
     </div>
 </div>
-
-
